@@ -3,8 +3,8 @@ let computerWins = 0;
 
 for (let i = 0; i <= 4; i++) {
     let winner = game();
-    if (winner === player)  {playerWins++;}
-    else if (winner === computerWins) {computerWins++;}
+    if (winner === "Player")  {playerWins++;}
+    else if (winner === "Computer") {computerWins++;}
     console.log(`Player: ${playerWins}`);
     console.log(`Computer: ${computerWins}`);
 }
