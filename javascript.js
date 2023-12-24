@@ -43,3 +43,5 @@ function compare(userHand, pcHand) {
     else if (userHand === "scissors" && pcHand === "rock") {return "Computer";}
     else if (userHand === "scissors" && pcHand === "paper") {return "Player";}
 }
+
+//this is a test. AddUI branch
