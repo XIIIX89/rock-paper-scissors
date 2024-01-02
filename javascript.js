@@ -1,30 +1,64 @@
 let playerWins = 0;
 let computerWins = 0;
+let counter = 0;
 
-for (let i = 0; i <= 4; i++) {
-    let winner = game();
-    if (winner === "Player")  {playerWins++;}
-    else if (winner === "Computer") {computerWins++;}
-    console.log(`Player: ${playerWins}`);
-    console.log(`Computer: ${computerWins}`);
-}
+let userHand = ' ';
+let pcHand = ' ';
+let winner = ' ';
 
-if (playerWins > computerWins) {alert("You Win!");}
-else if (computerWins > playerWins) {alert("You lose!");}
-else {alert("Draw");}
 
-function game() {
-    let userHand = player(); //gets the user's play from the player function
+document.addEventListener('click', (e) => {
+    let target = e.target.id;
+
+    switch (target) {
+        case 'rock': 
+            userHand = 'rock';
+            game(userHand);
+        break;
+
+        case 'paper': 
+            userHand = 'paper';
+            game(userHand);
+        break;
+
+        case 'scissors': 
+            userHand = 'scissors';
+            game(userHand);
+        break;
+
+        default: break;
+    }
+});
+
+function game(userHand) {
+    pcHand = pc(); 
     console.log(`Player: ${userHand}`);
-    let pcHand = pc(); //gets the computer's play from pc function
     console.log(`Computer: ${pcHand}`);
-    let winner = compare(userHand, pcHand); //compares the user's and computer's hands and assigns the victor to the winner variable
-    return winner;
-}
+    counter++;
+    winner = compare(userHand, pcHand);
+    console.log(winner);
 
-function player() {
-    let play = prompt("Enter rock, paper, or scissors."); //gets player's play
-    return play.toLowerCase(); //returns the lowercase version of player input
+    // check to see if either player has won 3 games (Best 3 out of 5)
+    if(winner === "Computer") {
+        computerWins++; 
+        if(computerWins === 3) 
+            {alert("You Lose!");
+            location.reload();}
+        }
+    else if(winner === "Player") {
+        playerWins++; 
+        if(playerWins === 3) 
+            {alert("You Win!");
+            location.reload();}
+        }
+
+    // check to see if the total games played is 5
+    if (counter === 5) {
+        if(playerWins > computerWins) {alert("You Win!");}
+        else if(computerWins > playerWins) {alert("You Lose!");}
+        else {alert("Draw!");}
+        location.reload();
+    }
 }
 
 function pc() {
@@ -35,7 +69,7 @@ function pc() {
 }
 
 function compare(userHand, pcHand) {
-    if (userHand === pcHand) {return "draw";}
+    if (userHand === pcHand) {return "Draw";}
     else if (userHand === "rock" && pcHand === "paper") {return "Computer";}
     else if (userHand === "rock" && pcHand === "scissors") {return "Player"}
     else if (userHand === "paper" && pcHand === "rock") {return "Player";}
@@ -44,4 +78,3 @@ function compare(userHand, pcHand) {
     else if (userHand === "scissors" && pcHand === "paper") {return "Player";}
 }
 
-//this is a test. AddUI branch
