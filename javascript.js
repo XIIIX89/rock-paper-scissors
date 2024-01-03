@@ -6,6 +6,15 @@ let userHand = ' ';
 let pcHand = ' ';
 let winner = ' ';
 
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+const playerPlayed = document.getElementById('playerPlayed');
+const computerPlayed = document.getElementById('computerPlayed');
+const playerWinCount = document.querySelector('#playerScore');
+const computerWinCount = document.querySelector('#computerScore');
+const roundCounter = document.querySelector('#round');
+const roundWinner = document.querySelector('#winner');
+
 
 document.addEventListener('click', (e) => {
     let target = e.target.id;
@@ -13,16 +22,19 @@ document.addEventListener('click', (e) => {
     switch (target) {
         case 'rock': 
             userHand = 'rock';
+            playerPlayed.textContent = `You Played: ${userHand.toUpperCase()}`;
             game(userHand);
         break;
 
         case 'paper': 
             userHand = 'paper';
+            playerPlayed.textContent = `You Played: ${userHand.toUpperCase()}`;
             game(userHand);
         break;
 
         case 'scissors': 
             userHand = 'scissors';
+            playerPlayed.textContent = `You Played: ${userHand.toUpperCase()}`;
             game(userHand);
         break;
 
@@ -32,33 +44,59 @@ document.addEventListener('click', (e) => {
 
 function game(userHand) {
     pcHand = pc(); 
+    computerPlayed.textContent = `Computer Played: ${pcHand.toUpperCase()}`;
+    winner = compare(userHand, pcHand);
     console.log(`Player: ${userHand}`);
     console.log(`Computer: ${pcHand}`);
+    console.log("Winner: " + winner);
     counter++;
-    winner = compare(userHand, pcHand);
-    console.log(winner);
-
+    
     // check to see if either player has won 3 games (Best 3 out of 5)
-    if(winner === "Computer") {
-        computerWins++; 
-        if(computerWins === 3) 
-            {alert("You Lose!");
-            location.reload();}
-        }
-    else if(winner === "Player") {
+    if(winner === "Computer" && counter < 5) {
+        computerWins++;
+        computerWinCount.textContent = `Computer: ${computerWins}`;
+        roundWinner.textContent = `Winner: ${winner}`;
+        roundCounter.textContent = `Round: ${counter}`;
+        // if(computerWins === 3) {
+        //     alert("You Lose!");
+        //     location.reload();
+        //     }
+    }
+    else if(winner === "Player" && counter < 5) {
         playerWins++; 
-        if(playerWins === 3) 
-            {alert("You Win!");
-            location.reload();}
-        }
-
+        playerWinCount.textContent = `Player: ${playerWins}`;
+        roundWinner.textContent = `Winner: ${winner}`;
+        roundCounter.textContent = `Round: ${counter}`;
+        // if(playerWins === 3) {
+        //     alert("You Win!");
+        //     location.reload();
+        // }
+    }
     // check to see if the total games played is 5
-    if (counter === 5) {
+    else if (counter === 5) {
         if(playerWins > computerWins) {alert("You Win!");}
         else if(computerWins > playerWins) {alert("You Lose!");}
-        else {alert("Draw!");}
+        else {
+            roundWinner.textContent = `Winner: ${winner}`;
+            roundCounter.textContent = `Round: ${counter}`;
+            alert("Draw!");}
         location.reload();
     }
+    // else if(winner === "Draw") {
+    //     roundWinner.textContent = `Winner: ${winner}`;
+    //     roundCounter.textContent = `Round: ${counter}`;
+    // }
+    // else if(winner === "Player" && playerWins === 2)  {
+    //     alert("You Win!");
+    //     location.reload();
+    // }
+    // else if (winner === "Computer" && computerWins === 2) {
+    //     alert("You Lose!");
+    //     location.reload();
+    // }
+    
+
+
 }
 
 function pc() {

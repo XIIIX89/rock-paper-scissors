@@ -3,6 +3,14 @@
     color: white;
 }
 
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
 #choices {
     display: flex;
     justify-content: center;
@@ -20,6 +28,19 @@
     border-radius: 4px;
 }
 
+#plays {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.play {
+    margin: 10px;
+
+}
+
 #scores {
     display: flex;
     justify-content: center;
@@ -28,4 +49,5 @@
 
 .score {
     margin: 20px;
+    margin-top: -10px;
 }

@@ -4,22 +4,26 @@
     <meta charset="utf-8">
     <title>Rock, Paper, Scissors</title>
     <link rel="stylesheet" href="style.css">
-    <script src="./javascript.js"></script>
+    <script src="./javascript.js" defer></script>
 </head>
 <body>
+    <h1>Rock, Paper, Scissors</h1>
+    <h3>Best of 5</h3>
     <div id="choices">
         <button class="choice" id="rock">ROCK</button>
         <button class="choice" id="paper">PAPER</button>
         <button class="choice" id="scissors">SCISSORS</button>
     </div>
-    <!--
-    <div id="playerPlayed">You Played: </div>
-    <div id="computerPlayed">Computer Played: </div>
-    <div id="round"></div>
-    -->
+    <div id="plays">
+        <div class="play" id="playerPlayed">You Played: </div>
+        <div class="play" id="computerPlayed">Computer Played: </div>
+        <div class="play" id="round">Round: 1</div>
+        <div class="play" id="winner">Winner: </div>
+    </div>
+
     <div id="scores">
-        <div class="score" id="playerScore">Player: </div>
-        <div class="score" id="computerScore">Computer: </div>
+        <div class="score" id="playerScore">Player: 0</div>
+        <div class="score" id="computerScore">Computer: 0</div>
     </div>
 </body>
 </html>
